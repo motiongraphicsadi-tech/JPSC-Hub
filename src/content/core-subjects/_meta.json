@@ -1,0 +1,15 @@
+{
+  "order": [
+    "thermodynamics",
+    "heat-transfer",
+    "fluid-mechanics",
+    "cre",
+    "mass-transfer",
+    "ipc"
+  ],
+
+  "hidden": [
+    "cre"
+    
+  ]
+}

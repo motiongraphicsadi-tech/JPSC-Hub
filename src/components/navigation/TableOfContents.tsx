@@ -102,7 +102,7 @@ export default function TableOfContents({
 
                text-zinc-400
 
-               hover:text-emerald-400
+               hover:text-blue-400
 
                transition-colors
              "

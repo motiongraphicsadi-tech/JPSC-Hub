@@ -34,33 +34,33 @@ export default function HomePage() {
           {/* HERO */}
           <section className="max-w-5xl">
 
-            <p
-              className="
-                text-xs
-                md:text-sm
-                uppercase
-                tracking-[0.25em]
-                text-zinc-500
-                mb-5
-              "
-            >
-              CHEMICALENGINEERINGHUB.COM
-            </p>
+                <p
+                 className="
+                   text-xs
+                   md:text-sm
+                   uppercase
+                   tracking-[0.25em]
+                   text-zinc-500
+                   mb-5
+                 "
+               >
+                 JPSCHUB.COM
+               </p>               
 
-            <h1
-              className="
-                text-4xl
-                md:text-5xl
-                font-bold
-                tracking-tight
-                leading-[1.05]
-              "
-            >
-              Learn Chemical Engineering{" "}
-              <span className="text-emerald-400 md:text-2xl">
-                the Industry Way.
-              </span>
-            </h1>
+               <h1
+                  className="
+                    text-4xl
+                    md:text-5xl
+                    font-bold
+                    tracking-tight
+                    leading-[1.05]
+                  "
+                >
+                  Prepare for JPSC{" "}
+                                  <span className="text-blue-400 md:text-2xl">
+                    the Smart Way.
+                  </span>
+                </h1>                            
 
           
 
@@ -83,7 +83,7 @@ export default function HomePage() {
             >
 
               <a
-                href="/core-subjects/thermodynamics/introduction"
+                href="/prelims/history/introduction"
                 className="
                   group
                   rounded-2xl
@@ -93,22 +93,22 @@ export default function HomePage() {
                   p-6
                   transition-all
                   duration-200
-                  hover:border-emerald-500
+                  hover:border-blue-500
                   hover:bg-zinc-900
                   hover:-translate-y-1
                 "
               >
-                <h3 className="text-xl font-semibold text-emerald-400">
-                  ChemE Basics 📘
+                <h3 className="text-xl font-semibold text-blue-400">
+                Prelims 📘
                 </h3>
 
                 <p className="mt-3 text-zinc-400">
-                  Core chemical engineering fundamentals.
+                History, Geography, Polity, Economy and General Science.
                 </p>
               </a>
 
               <a
-                href="/industrial-knowledge/industry-basics/introduction"
+                href="/mains/gs1/introduction"
                 className="
                   group
                   rounded-2xl
@@ -118,22 +118,22 @@ export default function HomePage() {
                   p-6
                   transition-all
                   duration-200
-                  hover:border-emerald-500
+                  hover:border-blue-500
                   hover:bg-zinc-900
                   hover:-translate-y-1
                 "
               >
-                <h3 className="text-xl font-semibold text-emerald-400">
-                  Industrial Knowledge 🏭
+                <h3 className="text-xl font-semibold text-blue-400">
+                Mains ✍️
                 </h3>
 
                 <p className="mt-3 text-zinc-400">
-                  Learn how chemical plants and industry operate.
+                GS I, GS II, GS III, GS IV, Essay and Language Papers.
                 </p>
               </a>
 
               <a
-                href="/industrial-safety/hazard-analysis/introduction"
+                href="/jharkhand-gk/history/introduction"
                 className="
                   group
                   rounded-2xl
@@ -143,17 +143,17 @@ export default function HomePage() {
                   p-6
                   transition-all
                   duration-200
-                  hover:border-emerald-500
+                  hover:border-blue-500
                   hover:bg-zinc-900
                   hover:-translate-y-1
                 "
               >
-                <h3 className="text-xl font-semibold text-emerald-400">
-                  Industrial Safety 🛡️
+                <h3 className="text-xl font-semibold text-blue-400">
+                Jharkhand GK 🌏
                 </h3>
 
                 <p className="mt-3 text-zinc-400">
-                  Process safety, hazards, incidents, and risk awareness.
+                Process safety, hazards, incidents, and risk awareness.
                 </p>
               </a>
 
@@ -168,12 +168,12 @@ export default function HomePage() {
                   p-6
                   transition-all
                   duration-200
-                  hover:border-emerald-500
+                  hover:border-blue-500
                   hover:bg-zinc-900
                   hover:-translate-y-1
                 "
               >
-                <h3 className="text-xl font-semibold text-emerald-400">
+                <h3 className="text-xl font-semibold text-blue-400">
                   Case Studies 📊
                 </h3>
 
@@ -193,12 +193,12 @@ export default function HomePage() {
                   p-6
                   transition-all
                   duration-200
-                  hover:border-emerald-500
+                  hover:border-blue-500
                   hover:bg-zinc-900
                   hover:-translate-y-1
                 "
               >
-                <h3 className="text-xl font-semibold text-emerald-400">
+                <h3 className="text-xl font-semibold text-blue-400">
                   Tools 🧮
                 </h3>
 
@@ -245,11 +245,11 @@ export default function HomePage() {
               transition-all
               duration-200
 
-              hover:border-emerald-500
+              hover:border-blue-500
             "
           >
 
-            <p className="text-xs text-emerald-400">
+            <p className="text-xs text-blue-400">
               {article.category}
             </p>
 

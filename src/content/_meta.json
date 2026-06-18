@@ -1,5 +1,11 @@
 {
     "order": [
+      "prelims",
+      "mains",
+      "jharkhand-gk",
+      "current-affairs",
+      "pyqs",
+      "test-series",
       "case-studies",
       "core-subjects",
       "industrial-knowledge",
@@ -9,6 +15,10 @@
     ],
   
     "hidden": [
+
+      "core-subjects",
+      "industrial-knowledge",
+      "industrial-safety",
       "case-studies",
        "Interview-Prep",
        "software"

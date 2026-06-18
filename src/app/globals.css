@@ -82,7 +82,7 @@
 }
 
 .prose h1 {
-  color:  #00d492;
+  color:  #f59e0b;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.15;
@@ -91,7 +91,7 @@
 }
 
 .prose h2 {
-  color: #3a86ff;
+  color: #60a5fa;
   font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.2;
@@ -160,7 +160,7 @@
 }
 
 .highlight {
-  color: #ffbe0b;
+  color:  #f59e0b;
   font-weight: 600;
 }
 
@@ -251,7 +251,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16,185,129,0.7);
+  background: rgba(59,130,246,0.7);
 }
 
 :root {
@@ -290,7 +290,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #0f172a;;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);

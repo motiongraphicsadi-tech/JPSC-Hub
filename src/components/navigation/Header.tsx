@@ -16,21 +16,27 @@ from "@/components/navigation/MobileSidebar";
 
 const categories = [
   {
-    name: "ChemE Basics",
-    href: "/core-subjects/thermodynamics/introduction",
-    match: "/core-subjects/",
+    name: "Prelims",
+    href: "/",
+    match: "/prelims",
   },
 
   {
-    name: "Industrial Knowledge",
-    href: "/industrial-knowledge/industry-basics/introduction",
-    match: "/industrial-knowledge",
+    name: "Mains",
+    href: "/",
+    match: "/mains",
   },
 
   {
-    name: "Industrial Safety",
-    href: "/industrial-safety/hazard-analysis/introduction",
-    match: "/industrial-safety",
+    name: "Jharkhand GK",
+    href: "/",
+    match: "/jharkhand-gk",
+  },
+
+  {
+    name: "Current Affairs",
+    href: "/",
+    match: "/current-affairs",
   },
 ];
 
@@ -144,11 +150,11 @@ export default function Header({
             >
 
               <span className="hidden md:inline">
-                ChemicalEngineeringHub.com
+              JPSCHub.com
               </span>
 
               <span className="md:hidden">
-                ChemE Hub
+              JPSC Hub
               </span>
 
             </Link>
@@ -196,7 +202,7 @@ export default function Header({
 
                       ${
                         isActive
-                          ? "text-white border-b-2 border-emerald-500 pb-1"
+                          ? "text-white border-b-2 border-blue-500 pb-1"
                           : "text-zinc-400"
                       }
                     `}
@@ -238,7 +244,7 @@ export default function Header({
               text-zinc-300
 
               hover:text-white
-              hover:border-emerald-500
+              hover:border-blue-500
 
               transition-all
             "

@@ -65,7 +65,7 @@ export default function TopicNavigation({
 
                   transition-colors
 
-                  group-hover:text-emerald-400
+                  group-hover:text-blue-400
                 "
               >
                 ← Previous
@@ -82,7 +82,7 @@ export default function TopicNavigation({
 
                   transition-colors
 
-                  group-hover:text-emerald-400
+                  group-hover:text-blue-400
                 "
               >
                 {previous.title}
@@ -120,7 +120,7 @@ export default function TopicNavigation({
 
                   transition-colors
 
-                  group-hover:text-emerald-400
+                  group-hover:text-blue-400
                 "
               >
                 Next →
@@ -137,7 +137,7 @@ export default function TopicNavigation({
 
                   transition-colors
 
-                  group-hover:text-emerald-400
+                  group-hover:text-blue-400
                 "
               >
                 {next.title}

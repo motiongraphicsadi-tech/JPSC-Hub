@@ -80,7 +80,7 @@ export default function TreeNode({
                 text-white
 
                 ring-1
-                ring-emerald-500/20
+                ring-blue-500/20
 
                 shadow-[0_0_0_1px_rgba(16,185,129,0.15)]
               `
@@ -107,7 +107,7 @@ export default function TreeNode({
 
             ${
               isActive
-                ? "text-emerald-400"
+                ? "text-blue-400"
                 : "text-zinc-500"
             }
           `}
@@ -157,7 +157,7 @@ export default function TreeNode({
           ${
             level === 0
               ? `
-                text-emerald-400
+                text-blue-400
                 text-base
                 font-semibold
               `

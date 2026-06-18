@@ -26,7 +26,7 @@ type Props = {
             >
               Topic
             
-              <span className="text-emerald-400">
+              <span className="text-blue-400">
                 {" "}
                 {current}
                 {" "}

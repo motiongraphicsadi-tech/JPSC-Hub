@@ -12,9 +12,9 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Chemical Engineering Platform",
+  title: "JPSC Hub",
   description:
-    "Structured engineering knowledge platform",
+    "Structured preparation platform for JPSC aspirants",
 };
 
 export default function RootLayout({

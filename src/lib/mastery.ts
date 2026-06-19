@@ -3,12 +3,15 @@ export function calculateMastery(
     revisionStage: number
   ) {
   
-    return Math.min(
-      100,
+    const mastery =
+      accuracy * 0.8 +
+      revisionStage * 4;
   
-      Math.round(
-        accuracy * 0.8 +
-        revisionStage * 4
+    return Math.max(
+      0,
+      Math.min(
+        100,
+        Math.round(mastery)
       )
     );
   }

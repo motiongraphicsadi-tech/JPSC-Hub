@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  calculateMastery
+} from "@/lib/mastery";
+
 import { useState } from "react";
 
 import { X } from "lucide-react";
@@ -82,37 +86,52 @@ export default function QuizModal({
         ) || "{}"
       );
     
-      console.log(
-        "Saving Quiz Score",
-        {
-          topicId,
-          percentage,
-        }
-      );
+     console.log(
+  "Saving Quiz Score",
+  {
+    topicId,
+    percentage,
+  }
+);
 
-      const quizData = {
-        ...existing,
-    
-        lastScore: percentage,
-    
-        bestScore: Math.max(
-          existing.bestScore || 0,
-          percentage
-        ),
-    
-        attempts:
-          (existing.attempts || 0) + 1,
-    
-        mastery: percentage,
-    
-        lastQuizDate:
-          new Date().toISOString(),
-      };
-    
-      localStorage.setItem(
-        `study-${topicId}`,
-        JSON.stringify(quizData)
-      );
+const quizData = {
+  ...existing,
+
+  lastScore: percentage,
+
+  bestScore: Math.max(
+    existing.bestScore || 0,
+    percentage
+  ),
+
+  attempts:
+    (existing.attempts || 0) + 1,
+
+  revisionStage:
+    existing.revisionStage || 0,
+
+  mastery: calculateMastery(
+    Math.max(
+      existing.bestScore || 0,
+      percentage
+    ),
+    existing.revisionStage || 0
+  ),
+
+  lastQuizDate:
+    new Date().toISOString(),
+};
+
+localStorage.setItem(
+  `study-${topicId}`,
+  JSON.stringify(quizData)
+);
+
+console.log(
+  "Saved Quiz Data",
+  quizData
+);
+
     }
 
     return (

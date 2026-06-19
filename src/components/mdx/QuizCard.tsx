@@ -18,14 +18,17 @@ type Props = {
   description?: string;
 
   questions: Question[];
+
+  topicId: string;
 };
 
 export default function QuizCard({
-    title,
-    description,
-    questions = [],
-  }: Partial<Props>) {
-    
+  title,
+  description,
+  questions = [],
+  topicId,
+}: Partial<Props>) {
+
     console.log(questions);
 
   const [open, setOpen] =
@@ -113,12 +116,12 @@ export default function QuizCard({
       {open && (
 
         <QuizModal
-        questions={questions || []}
-
-          onClose={() =>
-            setOpen(false)
-          }
-        />
+  questions={questions || []}
+  topicId={topicId || ""}
+  onClose={() =>
+    setOpen(false)
+  }
+/>
 
       )}
 

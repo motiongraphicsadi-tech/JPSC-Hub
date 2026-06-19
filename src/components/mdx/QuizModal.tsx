@@ -15,11 +15,14 @@ type Question = {
 type Props = {
   questions: Question[];
 
+  topicId: string;
+
   onClose: () => void;
 };
 
 export default function QuizModal({
   questions,
+  topicId,
   onClose,
 }: Props) {
 
@@ -67,6 +70,51 @@ export default function QuizModal({
     current >= questions.length
   ) {
 
+    const percentage = Math.round(
+      (score / questions.length) * 100
+    );
+    
+    if (typeof window !== "undefined") {
+    
+      const existing = JSON.parse(
+        localStorage.getItem(
+          `study-${topicId}`
+        ) || "{}"
+      );
+    
+      console.log(
+        "Saving Quiz Score",
+        {
+          topicId,
+          percentage,
+        }
+      );
+
+      const quizData = {
+        ...existing,
+    
+        lastScore: percentage,
+    
+        bestScore: Math.max(
+          existing.bestScore || 0,
+          percentage
+        ),
+    
+        attempts:
+          (existing.attempts || 0) + 1,
+    
+        mastery: percentage,
+    
+        lastQuizDate:
+          new Date().toISOString(),
+      };
+    
+      localStorage.setItem(
+        `study-${topicId}`,
+        JSON.stringify(quizData)
+      );
+    }
+
     return (
 
       <div
@@ -111,15 +159,25 @@ export default function QuizModal({
           </h2>
 
           <p
-            className="
-              mt-8
-              text-6xl
-              font-bold
-              text-green-500
-            "
-          >
-            {score} / {questions.length}
-          </p>
+  className="
+    mt-8
+    text-6xl
+    font-bold
+    text-green-500
+  "
+>
+  {score} / {questions.length}
+</p>
+
+<p
+  className="
+    mt-4
+    text-2xl
+    text-zinc-400
+  "
+>
+  Score: {percentage}%
+</p>
 
           <button
             onClick={onClose}

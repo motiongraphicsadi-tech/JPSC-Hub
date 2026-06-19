@@ -235,6 +235,7 @@ const navigation =
         <QuizCard
           {...props}
           questions={quiz}
+          topicId={slug.join("/")}
         />
       ),
     

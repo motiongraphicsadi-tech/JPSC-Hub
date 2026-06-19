@@ -1,15 +1,24 @@
 "use client";
 
+
+
 import { useEffect, useState } from "react";
 
 type TopicData = {
   topicId: string;
-  completed: boolean;
-  confidence: number;
-  revisionNeeded: boolean;
-  pyqsSolved: number;
-};
 
+  mastery: number;
+
+  bestScore: number;
+
+  lastScore: number;
+
+  attempts: number;
+
+  revisionStage: number;
+
+  lastQuizDate: string;
+};
 export default function Dashboard() {
 
   const [topics, setTopics] =
@@ -48,30 +57,31 @@ export default function Dashboard() {
         const data =
           JSON.parse(raw);
 
-        allTopics.push({
-          topicId:
-            key.replace(
-              "study-",
-              ""
-            ),
-
-          completed:
-            data.completed ??
-            false,
-
-          confidence:
-            data.confidence ??
-            0,
-
-            revisionNeeded:
-            Boolean(
-              data.revisionNeeded
-            ),
-
-          pyqsSolved:
-            data.pyqsSolved ??
-            0,
-        });
+          allTopics.push({
+            topicId:
+              key.replace(
+                "study-",
+                ""
+              ),
+          
+            mastery:
+              data.mastery ?? 0,
+          
+            bestScore:
+              data.bestScore ?? 0,
+          
+            lastScore:
+              data.lastScore ?? 0,
+          
+            attempts:
+              data.attempts ?? 0,
+          
+            revisionStage:
+              data.revisionStage ?? 0,
+          
+            lastQuizDate:
+              data.lastQuizDate ?? "",
+          });
 
       } catch {}
     }
@@ -90,37 +100,30 @@ export default function Dashboard() {
   const totalTopics =
     topics.length;
 
-  const completedTopics =
+    const completedTopics =
     topics.filter(
       (t) =>
-        t.completed
+        t.mastery >= 80
     ).length;
 
-  const revisionPending =
+    const revisionPending =
     topics.filter(
       (t) =>
-        t.revisionNeeded
+        t.mastery < 60
     ).length;
 
-  const totalPyqs =
-    topics.reduce(
-      (sum, t) =>
-        sum +
-        t.pyqsSolved,
-      0
-    );
-
-  const averageConfidence =
+    const averageMastery =
     totalTopics
       ? (
           topics.reduce(
             (sum, t) =>
-              sum +
-              t.confidence,
+              sum + t.mastery,
             0
           ) / totalTopics
         ).toFixed(1)
       : "0";
+
+ 
 
   const completionPercent =
     totalTopics
@@ -166,7 +169,7 @@ export default function Dashboard() {
 
     subjectMap[subject].total++;
 
-    if (topic.completed) {
+    if (topic.mastery >= 80) {
       subjectMap[subject].completed++;
     }
 
@@ -175,8 +178,7 @@ export default function Dashboard() {
   const revisionQueue =
   topics.filter(
     (topic) =>
-      topic.revisionNeeded ||
-      topic.confidence <= 2
+      topic.mastery < 60
   );
 
   const todaysRevision =
@@ -203,6 +205,8 @@ export default function Dashboard() {
         Dashboard
       </h1>
 
+
+
       <div
         className="
           grid
@@ -228,9 +232,9 @@ export default function Dashboard() {
         />
 
         <Card
-          title="PYQs Solved"
-          value={totalPyqs}
-        />
+          title="Average Mastery"
+          value={`${averageMastery}%`}
+        />             
 
       </div>
 
@@ -271,12 +275,10 @@ export default function Dashboard() {
           </p>
 
           <p>
-            Average Confidence:
+            Average Mastery:
             {" "}
-            {averageConfidence}
-            {" "}
-            / 5
-          </p>
+            {averageMastery}%
+          </p>                  
 
           <p>
             Revision Needed:
@@ -284,11 +286,7 @@ export default function Dashboard() {
             {revisionPending}
           </p>
 
-          <p>
-            Total PYQs Solved:
-            {" "}
-            {totalPyqs}
-          </p>
+         
 
         </div>
 
@@ -326,7 +324,7 @@ export default function Dashboard() {
           {topics
             .filter(
               (t) =>
-                t.confidence <= 2
+                t.mastery < 60
             )
             .map((topic) => (
 
@@ -596,17 +594,19 @@ export default function Dashboard() {
             >
 
               <span>
-                Confidence:
-                {" "}
-                {topic.confidence}
-                /5
+                Mastery:
+                {topic.mastery}%
               </span>
-
+              
               <span>
-                PYQs:
-                {" "}
-                {topic.pyqsSolved}
+                Best Score:
+                {topic.bestScore}%
               </span>
+              
+              <span>
+                Attempts:
+                {topic.attempts}
+              </span>              
 
             </div>
 

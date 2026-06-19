@@ -1,6 +1,12 @@
 import fs from "fs";
 import path from "path";
 
+import MasteryBar
+from "@/components/navigation/MasteryBar";
+
+import TopicMasteryTooltip
+from "@/components/navigation/TopicMasteryTooltip";
+
 import { getTopicNavigation }
 from "@/lib/getTopicNavigation";
 
@@ -10,9 +16,6 @@ from "@/components/navigation/TopicNavigation";
 import {
   getTopicProgress
 } from "@/lib/getTopicProgress";
-
-import StudyTracker
-from "@/components/navigation/StudyTracker";
 
 import TopicProgress
 from "@/components/navigation/TopicProgress";
@@ -296,11 +299,70 @@ const navigation =
             <Breadcrumb />
     
             {progress && (
-              <TopicProgress
-                current={progress.current}
-                total={progress.total}
-              />
-            )}
+
+<div
+  className="
+    flex
+    items-center
+    justify-between
+    mt-4
+    mb-6
+  "
+>
+
+  <TopicProgress
+    current={progress.current}
+    total={progress.total}
+  />
+
+  <div className="group relative">
+
+    <MasteryBar
+      topicId={slug.join("/")}
+    />
+
+    <div
+      className="
+        invisible
+        absolute
+        right-0
+        top-8
+        z-50
+
+        w-72
+
+        rounded-xl
+        border
+        border-zinc-800
+
+        bg-zinc-950
+
+        p-4
+
+        text-xs
+
+        opacity-0
+
+        shadow-xl
+
+        transition-all
+
+        group-hover:visible
+        group-hover:opacity-100
+      "
+    >
+
+      <TopicMasteryTooltip
+        topicId={slug.join("/")}
+      />
+
+    </div>
+
+  </div>
+
+</div>
+
+)}
     
             <div className="max-w-5xl min-w-0">
     
@@ -315,14 +377,57 @@ const navigation =
                 {mdx.content}
               </article>
     
-              <StudyTracker
-                    topicId={slug.join("/")}
-                  />
+              <div className="group relative">
+
+<MasteryBar
+  topicId={slug.join("/")}
+/>
+
+<div
+  className="
+    invisible
+    absolute
+    right-0
+    top-8
+    z-50
+
+    w-72
+
+    rounded-xl
+    border
+    border-zinc-800
+
+    bg-zinc-950
+
+    p-4
+
+    text-xs
+
+    opacity-0
+
+    shadow-xl
+
+    transition-all
+
+    group-hover:visible
+    group-hover:opacity-100
+  "
+>
+
+  <TopicMasteryTooltip
+    topicId={slug.join("/")}
+  />
+
+</div>
+
+</div>                
                   
-                  <TopicNavigation
-                    previous={navigation.previous}
-                    next={navigation.next}
-                  />
+            
+              
+              <TopicNavigation
+                previous={navigation.previous}
+                next={navigation.next}
+              />                
     
             </div>
     

@@ -1,46 +1,53 @@
 type Props = {
-    current: number;
-    total: number;
-  };
-  
-  export default function TopicProgress({
-    current,
-    total,
-  }: Props) {
-  
-    return (
-  
-      <div
+  current: number;
+  total: number;
+};
+
+export default function TopicProgress({
+  current,
+  total,
+}: Props) {
+
+  return (
+
+    <div>
+
+      <p
         className="
-          mb-6
+          text-xs
+          font-medium
+          tracking-wide
+          text-zinc-500
         "
       >
-  
-              <p
-              className="
-                text-xs
-                font-medium
-            
-                text-zinc-500
-              "
-            >
-              Topic
-            
-              <span className="text-blue-400">
-                {" "}
-                {current}
-                {" "}
-              </span>
-            
-              of
-            
-              <span className="text-zinc-300">
-                {" "}
-                {total}
-              </span>
-            </p>
-  
-      </div>
-  
-    );
-  }
+
+        Topic
+
+        <span
+          className="
+            ml-1
+            text-blue-400
+          "
+        >
+          {current}
+        </span>
+
+        <span className="mx-1">
+          of
+        </span>
+
+        <span
+          className="
+            text-zinc-300
+          "
+        >
+          {total}
+        </span>
+
+      </p>
+
+    </div>
+
+  );
+
+}

@@ -11,6 +11,9 @@ import {
   getTopicProgress
 } from "@/lib/getTopicProgress";
 
+import StudyTracker
+from "@/components/navigation/StudyTracker";
+
 import TopicProgress
 from "@/components/navigation/TopicProgress";
 
@@ -311,10 +314,14 @@ const navigation =
                 {mdx.content}
               </article>
     
-              <TopicNavigation
-                previous={navigation.previous}
-                next={navigation.next}
-              />
+              <StudyTracker
+                    topicId={slug.join("/")}
+                  />
+                  
+                  <TopicNavigation
+                    previous={navigation.previous}
+                    next={navigation.next}
+                  />
     
             </div>
     

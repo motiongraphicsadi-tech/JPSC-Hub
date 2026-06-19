@@ -15,11 +15,24 @@ import MobileSidebar
 from "@/components/navigation/MobileSidebar";
 
 const categories = [
+
   {
     name: "Prelims",
-    href: "/",
+    href: "/prelims/paper-1-general-studies/history-of-india/introduction",
     match: "/prelims",
   },
+
+  // {
+  //   name: "Paper I",
+  //   href: "/prelims/paper-1-general-studies/history-of-india/introduction",
+  //   match: "/paper-1-general-studies",
+  // },
+
+  // {
+  //   name: "Paper II",
+  //   href: "/prelims/paper-2-jharkhand-specific/\history-of-jharkhand/introduction",
+  //   match: "/paper-2-jharkhand-specific",
+  // },
 
   {
     name: "Mains",
@@ -28,15 +41,9 @@ const categories = [
   },
 
   {
-    name: "Jharkhand GK",
+    name: "Tests",
     href: "/",
-    match: "/jharkhand-gk",
-  },
-
-  {
-    name: "Current Affairs",
-    href: "/",
-    match: "/current-affairs",
+    match: "/test-series",
   },
 ];
 

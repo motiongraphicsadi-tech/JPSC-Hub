@@ -10,6 +10,11 @@ export default function StudyTracker({
   topicId,
 }: Props) {
 
+  console.log(
+    "TOPIC ID:",
+    topicId
+  );
+
   const [completed, setCompleted] =
     useState(false);
 
@@ -25,68 +30,77 @@ export default function StudyTracker({
   const [lastUpdated, setLastUpdated] =
     useState("");
 
-  useEffect(() => {
+    const [loaded, setLoaded] =
+    useState(false);
 
-    const saved =
-      localStorage.getItem(
-        `study-${topicId}`
+    useEffect(() => {
+
+      const saved =
+        localStorage.getItem(
+          `study-${topicId}`
+        );
+    
+      if (saved) {
+    
+        const data =
+          JSON.parse(saved);
+    
+        setCompleted(
+          data.completed ?? false
+        );
+    
+        setConfidence(
+          data.confidence ?? 3
+        );
+    
+        setRevisionNeeded(
+          data.revisionNeeded ?? false
+        );
+    
+        setPyqsSolved(
+          data.pyqsSolved ?? 0
+        );
+    
+        setLastUpdated(
+          data.lastUpdated ?? ""
+        );
+    
+      }
+    
+      setLoaded(true);
+    
+    }, [topicId]);
+
+    useEffect(() => {
+
+      if (!loaded) return;
+    
+      const data = {
+        completed,
+        confidence,
+        revisionNeeded,
+        pyqsSolved,
+        lastUpdated:
+          new Date().toISOString(),
+      };
+    
+      localStorage.setItem(
+        `study-${topicId}`,
+        JSON.stringify(data)
       );
-
-    if (!saved) return;
-
-    const data =
-      JSON.parse(saved);
-
-    setCompleted(
-      data.completed ?? false
-    );
-
-    setConfidence(
-      data.confidence ?? 3
-    );
-
-    setRevisionNeeded(
-      data.revisionNeeded ?? false
-    );
-
-    setPyqsSolved(
-      data.pyqsSolved ?? 0
-    );
-
-    setLastUpdated(
-      data.lastUpdated ?? ""
-    );
-
-  }, [topicId]);
-
-  useEffect(() => {
-
-    const data = {
+    
+      setLastUpdated(
+        data.lastUpdated
+      );
+    
+    }, [
+      loaded,
+      topicId,
       completed,
       confidence,
       revisionNeeded,
       pyqsSolved,
-
-      lastUpdated:
-        new Date().toISOString(),
-    };
-
-    localStorage.setItem(
-      `study-${topicId}`,
-      JSON.stringify(data)
-    );
-
-    setLastUpdated(
-      data.lastUpdated
-    );
-
-  }, [
-    topicId,
-    completed,
-    confidence,
-    revisionNeeded,
-    pyqsSolved,
-  ]);
+    ]);
 
   /*
     SCORE FORMULA

@@ -45,6 +45,14 @@ const categories = [
     href: "/",
     match: "/test-series",
   },
+
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    match: "/dashboard",
+  },
+
+
 ];
 
 type ContentNode = {

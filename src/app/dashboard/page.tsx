@@ -63,9 +63,10 @@ export default function Dashboard() {
             data.confidence ??
             0,
 
-          revisionNeeded:
-            data.revisionNeeded ??
-            false,
+            revisionNeeded:
+            Boolean(
+              data.revisionNeeded
+            ),
 
           pyqsSolved:
             data.pyqsSolved ??
@@ -75,6 +76,11 @@ export default function Dashboard() {
       } catch {}
     }
 
+    console.log(
+      "Dashboard Topics:",
+      allTopics
+    );
+    
     setTopics(
       allTopics
     );
@@ -172,6 +178,9 @@ export default function Dashboard() {
       topic.revisionNeeded ||
       topic.confidence <= 2
   );
+
+  const todaysRevision =
+  revisionQueue.slice(0, 5);
 
   return (
 
@@ -536,20 +545,7 @@ export default function Dashboard() {
         (topic) => (
 
           <div
-            key={topic.topicId
-  .split("/")
-  .slice(-2)
-  .map(
-    (s) =>
-      s
-        .replace(/-/g, " ")
-        .replace(
-          /\b\w/g,
-          c => c.toUpperCase()
-        )
-  )
-  .join(" → ")
-}
+          key={topic.topicId}
             className="
               rounded-lg
               border
@@ -613,6 +609,95 @@ export default function Dashboard() {
               </span>
 
             </div>
+
+          </div>
+
+        )
+      )}
+
+    </div>
+
+  )}
+
+</div>
+
+{/* TODAY'S REVISION */}
+
+<div
+  className="
+    mt-8
+    rounded-xl
+    border
+    border-zinc-800
+    bg-zinc-950
+    p-6
+  "
+>
+
+  <h2
+    className="
+      text-lg
+      font-semibold
+      mb-5
+    "
+  >
+    Today's Revision
+  </h2>
+
+  {todaysRevision.length === 0 ? (
+
+    <p
+      className="
+        text-zinc-500
+      "
+    >
+      Nothing scheduled today 🎉
+    </p>
+
+  ) : (
+
+    <div
+      className="
+        space-y-3
+      "
+    >
+
+      {todaysRevision.map(
+        (topic) => (
+
+          <div
+            key={topic.topicId}
+            className="
+              rounded-lg
+              border
+              border-zinc-800
+              p-4
+            "
+          >
+
+            <p
+              className="
+                text-yellow-400
+                text-sm
+              "
+            >
+              📚 {" "}
+              {
+                topic.topicId
+                  .split("/")
+                  .slice(-2)
+                  .map(
+                    (s) =>
+                      s
+                        .replace(/-/g, " ")
+                        .replace(
+                          /\b\w/g,
+                          c => c.toUpperCase()
+                        )
+                  )
+                  .join(" → ")
+              }
+            </p>
 
           </div>
 

@@ -233,6 +233,13 @@ import thermalConductivity from "./core-subjects/heat-transfer/thermal-conductiv
 import heatingMechanismsInMaterials from "./core-subjects/heat-transfer/heating-mechanisms-in-materials";
 import basicsOfConvection from "./core-subjects/heat-transfer/basics-of-convection";
 
+// history of jharkhand
+
+import mundaGovernanceSystem from "./prelims/paper-2-jharkhand-specific/history-of-jharkhand/munda-governance-system";
+import nagvanshiGovernanceSystem from "./prelims/paper-2-jharkhand-specific/history-of-jharkhand/nagvanshi-governance-system";
+import parhaPanchayatSystem from "./prelims/paper-2-jharkhand-specific/history-of-jharkhand/parha-panchayat-system";
+import manjhiParganaSystem from "./prelims/paper-2-jharkhand-specific/history-of-jharkhand/manjhi-pargana-system";
+
 export const quizzes = {
 
   /* Industry Basics */
@@ -519,5 +526,12 @@ export const quizzes = {
 "heating-mechanisms-in-materials": heatingMechanismsInMaterials,
 
 "basics-of-convection": basicsOfConvection,
+
+// history of jharkhand 
+
+"munda-governance-system":mundaGovernanceSystem,
+"nagvanshi-governance-system":nagvanshiGovernanceSystem,
+"parha-panchayat-system":parhaPanchayatSystem,
+"manjhi-pargana-system":manjhiParganaSystem,
 
 };

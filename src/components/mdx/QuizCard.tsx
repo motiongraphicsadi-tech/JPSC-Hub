@@ -116,12 +116,12 @@ export default function QuizCard({
       {open && (
 
         <QuizModal
-  questions={questions || []}
-  topicId={topicId || ""}
-  onClose={() =>
-    setOpen(false)
-  }
-/>
+            questions={questions || []}
+            topicId={topicId || ""}
+            onClose={() =>
+              setOpen(false)
+            }
+          />
 
       )}
 

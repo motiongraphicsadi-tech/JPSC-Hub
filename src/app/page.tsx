@@ -157,6 +157,31 @@ export default function HomePage() {
                 </p>
               </a>
 
+              <a
+  href="/current-affairs/introduction"
+  className="
+    group
+    rounded-2xl
+    border
+    border-zinc-800
+    bg-zinc-950
+    p-6
+    transition-all
+    duration-200
+    hover:border-blue-500
+    hover:bg-zinc-900
+    hover:-translate-y-1
+  "
+>
+  <h3 className="text-xl font-semibold text-blue-400">
+    Current Affairs 📰
+  </h3>
+
+  <p className="mt-3 text-zinc-400">
+    Daily, Monthly and Exam-Oriented Current Affairs.
+  </p>
+</a>
+
               {/*<a
                 href="/case-studies/startup/introduction"
                 className="

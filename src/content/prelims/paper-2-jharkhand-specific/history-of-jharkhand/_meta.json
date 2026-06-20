@@ -2,10 +2,10 @@
   "order": [
     "munda-governance-system",
     "nagvanshi-governance-system",
-    "paharia-governance-system",
+    "parha-panchayat-system",
     "manjhi-pargana-system",
+    "paharia-governance-system",
     "munda-manaki-system",
-    "parha-system",
     "village-governance-system"
   ]
 }

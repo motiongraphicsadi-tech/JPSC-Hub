@@ -54,8 +54,12 @@ import QuizCard from "@/components/mdx/QuizCard";
 import QuizModal from "@/components/mdx/QuizModal";
 import InfoBox from "@/components/mdx/InfoBox";
 
-
 import { quizzes } from "@/data/quizzes";
+
+import English from "@/components/mdx/English";
+import Hindi from "@/components/mdx/Hindi";
+import { LanguageProvider } from "@/components/mdx/LanguageProvider";
+import LanguageSwitcher from "@/components/mdx/LanguageSwitcher";
 
 function resolveMdxPath(slug: string[]) {
   return path.join(
@@ -245,7 +249,11 @@ const navigation =
       QuizModal,
     
       InfoBox,
-    
+
+      English,
+      Hindi,
+      
+
     };
 
   const mdx =
@@ -296,8 +304,10 @@ const navigation =
             "
           >
     
+           <LanguageProvider>
+
             <Breadcrumb />
-    
+
             {progress && (
 
 <div
@@ -364,18 +374,23 @@ const navigation =
 
 )}
     
+   <LanguageSwitcher/>
+           
+
             <div className="max-w-5xl min-w-0">
     
-              <article
-                className="
-                  prose
-                  prose-invert
-                  mt-8
-                  max-w-none
-                "
-              >
-                {mdx.content}
-              </article>
+             
+               <article
+                 className="
+                   prose
+                   prose-invert
+                   mt-8
+                   max-w-none
+                 "
+               >
+                 {mdx.content}
+               </article>
+                         
     
               <div className="group relative">
 
@@ -430,6 +445,8 @@ const navigation =
               />                
     
             </div>
+
+            </LanguageProvider>
     
           </main>
     

@@ -252,6 +252,7 @@ const navigation =
 
       English,
       Hindi,
+      LanguageSwitcher,
       
 
     };

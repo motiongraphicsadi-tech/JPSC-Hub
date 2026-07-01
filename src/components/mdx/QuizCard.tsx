@@ -1,24 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import QuizModal from "./QuizModal";
 
-type Question = {
-  question: string;
-
-  options: string[];
-
-  answer: string;
-};
+import { QuizQuestion } from "@/types/quiz";
+import { createAttempt } from "@/lib/quiz/createAttempt";
 
 type Props = {
   title: string;
-
   description?: string;
-
-  questions: Question[];
-
+  questions: QuizQuestion[];
   topicId: string;
 };
 
@@ -26,18 +18,29 @@ export default function QuizCard({
   title,
   description,
   questions = [],
-  topicId,
+  topicId = "",
 }: Partial<Props>) {
+  const [open, setOpen] = useState(false);
 
-    console.log(questions);
+  /**
+   * Creates one randomized attempt.
+   * A new attempt is generated every time
+   * the quiz is opened.
+   */
+  const [attemptQuestions, setAttemptQuestions] = useState<QuizQuestion[]>([]);
 
-  const [open, setOpen] =
-    useState(false);
+  function startQuiz() {
+    setAttemptQuestions(createAttempt(questions as QuizQuestion[]));
+    setOpen(true);
+  }
+
+  function closeQuiz() {
+    setOpen(false);
+    setAttemptQuestions([]);
+  }
 
   return (
-
     <>
-
       {/* Quiz Preview Card */}
       <div
         className="
@@ -50,7 +53,6 @@ export default function QuizCard({
           text-white
         "
       >
-
         <h2
           className="
             text-3xl
@@ -61,7 +63,6 @@ export default function QuizCard({
         </h2>
 
         {description && (
-
           <p
             className="
               mt-4
@@ -70,7 +71,6 @@ export default function QuizCard({
           >
             {description}
           </p>
-
         )}
 
         <div
@@ -81,21 +81,17 @@ export default function QuizCard({
             justify-between
           "
         >
-
           <span
             className="
               text-sm
               text-gray-500
             "
           >
-            {questions?.length || 0} Questions
+            {questions.length} Questions
           </span>
 
           <button
-            onClick={() =>
-              setOpen(true)
-            }
-
+            onClick={startQuiz}
             className="
               rounded-xl
               bg-blue-600
@@ -103,28 +99,23 @@ export default function QuizCard({
               py-3
               font-semibold
               text-white
+              transition
+              hover:bg-blue-700
             "
           >
             Start Quiz
           </button>
-
         </div>
-
       </div>
 
-      {/* Modal */}
+      {/* Quiz Modal */}
       {open && (
-
         <QuizModal
-            questions={questions || []}
-            topicId={topicId || ""}
-            onClose={() =>
-              setOpen(false)
-            }
-          />
-
+          questions={attemptQuestions}
+          topicId={topicId}
+          onClose={closeQuiz}
+        />
       )}
-
     </>
   );
 }

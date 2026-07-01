@@ -1,26 +1,15 @@
 "use client";
 
-import {
-  calculateMastery
-} from "@/lib/mastery";
-
-import { useState } from "react";
-
 import { X } from "lucide-react";
 
-type Question = {
-  question: string;
+import { useQuizEngine } from "@/hooks/useQuizEngine";
+import { saveQuizAttempt } from "@/lib/quiz/storage";
 
-  options: string[];
-
-  answer: string;
-};
+import { QuizQuestion } from "@/types/quiz";
 
 type Props = {
-  questions: Question[];
-
+  questions: QuizQuestion[];
   topicId: string;
-
   onClose: () => void;
 };
 
@@ -29,178 +18,73 @@ export default function QuizModal({
   topicId,
   onClose,
 }: Props) {
-
-  const [current, setCurrent] =
-    useState(0);
-
-  const [selected, setSelected] =
-    useState<string | null>(null);
-
-  const [score, setScore] =
-    useState(0);
-
-  const [submitted, setSubmitted] =
-    useState(false);
-
-  const question =
-    questions[current];
-
-  function handleSubmit() {
-
-    if (!selected) return;
-
-    if (
-      selected === question.answer
-    ) {
-      setScore((prev) => prev + 1);
-    }
-
-    setSubmitted(true);
-  }
-
-  function handleNext() {
-
-    setSelected(null);
-
-    setSubmitted(false);
-
-    setCurrent((prev) => prev + 1);
-  }
+  const { state, actions } =
+    useQuizEngine(questions);
 
   /*
-    Quiz Completed
+   --------------------------------
+   Quiz Completed
+   --------------------------------
   */
-  if (
-    current >= questions.length
-  ) {
 
-    const percentage = Math.round(
-      (score / questions.length) * 100
+  if (state.finished) {
+    const stats = state.statistics;
+
+    saveQuizAttempt(
+      topicId,
+      stats.percentage
     );
-    
-    if (typeof window !== "undefined") {
-    
-      const existing = JSON.parse(
-        localStorage.getItem(
-          `study-${topicId}`
-        ) || "{}"
-      );
-    
-     console.log(
-  "Saving Quiz Score",
-  {
-    topicId,
-    percentage,
-  }
-);
-
-const quizData = {
-  ...existing,
-
-  lastScore: percentage,
-
-  bestScore: Math.max(
-    existing.bestScore || 0,
-    percentage
-  ),
-
-  attempts:
-    (existing.attempts || 0) + 1,
-
-  revisionStage:
-    existing.revisionStage || 0,
-
-  mastery: calculateMastery(
-    Math.max(
-      existing.bestScore || 0,
-      percentage
-    ),
-    existing.revisionStage || 0
-  ),
-
-  lastQuizDate:
-    new Date().toISOString(),
-};
-
-localStorage.setItem(
-  `study-${topicId}`,
-  JSON.stringify(quizData)
-);
-
-console.log(
-  "Saved Quiz Data",
-  quizData
-);
-
-    }
 
     return (
-
       <div
         className="
-          fixed
-          inset-0
+          fixed inset-0
           z-[99999]
-
-          flex
-          items-center
-          justify-center
-
+          flex items-center justify-center
           bg-black/80
           backdrop-blur-sm
         "
       >
-
         <div
           className="
             w-full
             max-w-2xl
-
             rounded-3xl
             border
             border-gray-800
-
             bg-gray-950
-
             p-10
             text-center
             text-white
           "
         >
-
-          <h2
-            className="
-              text-4xl
-              font-bold
-            "
-          >
+          <h2 className="text-4xl font-bold">
             Quiz Completed
           </h2>
 
           <p
-  className="
-    mt-8
-    text-6xl
-    font-bold
-    text-green-500
-  "
->
-  {score} / {questions.length}
-</p>
+            className="
+              mt-8
+              text-6xl
+              font-bold
+              text-green-500
+            "
+          >
+            {state.score} / {questions.length}
+          </p>
 
-<p
-  className="
-    mt-4
-    text-2xl
-    text-zinc-400
-  "
->
-  Score: {percentage}%
-</p>
+          <p
+            className="
+              mt-4
+              text-2xl
+              text-zinc-400
+            "
+          >
+            Score : {stats.percentage}%
+          </p>
 
           <button
             onClick={onClose}
-
             className="
               mt-10
               rounded-xl
@@ -213,97 +97,110 @@ console.log(
           >
             Close Quiz
           </button>
-
         </div>
-
       </div>
     );
   }
 
-  return (
+  // Safe because we already returned when finished.
+  const question = state.question!;
 
+  return (
     <div
       className="
-        fixed
-        inset-0
+        fixed inset-0
         z-[99999]
-
-        flex
-        items-center
-        justify-center
-
+        flex items-center justify-center
         bg-black/80
         backdrop-blur-sm
-
         p-4
       "
     >
-
       <div
         className="
           relative
-
           w-full
           max-w-3xl
-
           rounded-3xl
           border
           border-gray-800
-
           bg-gray-950
-
           p-8
           text-white
         "
       >
-
         {/* Close */}
+
         <button
           onClick={onClose}
-
-          className="
-            absolute
-            right-4
-            top-4
-          "
+          className="absolute right-4 top-4"
         >
-
           <X className="h-6 w-6" />
-
         </button>
 
-        {/* Progress */}
-        <div
-          className="
-            mb-8
-            flex
-            items-center
-            justify-between
-          "
-        >
+        {/* Header */}
 
-          <h2
-            className="
-              text-2xl
-              font-bold
-            "
-          >
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">
             Quiz
           </h2>
 
-          <span
-            className="
-              text-gray-400
-            "
-          >
-            Question {current + 1}
-            {" / "}
+          <span className="text-gray-400">
+            Question {state.current + 1} /{" "}
             {questions.length}
           </span>
+        </div>
 
+        {/* Exam Tag */}
+
+        <div className="mb-6 flex flex-wrap gap-3">
+          {question.type === "pyq" &&
+          question.exam ? (
+            <span
+              className="
+                rounded-full
+                bg-orange-500/20
+                px-3
+                py-1
+                text-sm
+                font-medium
+                text-orange-400
+              "
+            >
+              🏷 {question.exam.commission}{" "}
+              {question.exam.stage}{" "}
+              {question.exam.year}
+            </span>
+          ) : (
+            <span
+              className="
+                rounded-full
+                bg-blue-500/20
+                px-3
+                py-1
+                text-sm
+                text-blue-300
+              "
+            >
+              Practice Question
+            </span>
+          )}
+
+          <span
+            className="
+              rounded-full
+              bg-zinc-800
+              px-3
+              py-1
+              text-sm
+            "
+          >
+            {question.difficulty}
+          </span>
         </div>
 
         {/* Question */}
+
         <h3
           className="
             text-3xl
@@ -315,92 +212,72 @@ console.log(
         </h3>
 
         {/* Options */}
-        <div
-          className="
-            mt-8
-            space-y-4
-          "
-        >
 
-          {question.options.map(
-            (option) => {
+        <div className="mt-8 space-y-4">
+          {question.options.map((option) => {
+            const isCorrect =
+              state.submitted &&
+              option.id ===
+                question.correctOptionId;
 
-              const isCorrect =
-                submitted &&
-                option === question.answer;
+            const isWrong =
+              state.submitted &&
+              option.id ===
+                state.selected &&
+              option.id !==
+                question.correctOptionId;
 
-              const isWrong =
-                submitted &&
-                option === selected &&
-                option !== question.answer;
+            return (
+              <button
+                key={option.id}
+                onClick={() =>
+                  actions.selectOption(
+                    option.id
+                  )
+                }
+                className={`
+                  w-full
+                  rounded-2xl
+                  border
+                  px-5
+                  py-4
+                  text-left
+                  text-lg
+                  transition-all
 
-              return (
-
-                <button
-                  key={option}
-
-                  onClick={() =>
-                    !submitted &&
-                    setSelected(option)
+                  ${
+                    state.selected ===
+                    option.id
+                      ? "border-blue-500 bg-blue-500/20"
+                      : "border-gray-800 bg-gray-900"
                   }
 
-                  className={`
-                    w-full
-                    rounded-2xl
-                    border
+                  ${
+                    isCorrect
+                      ? "border-green-500 bg-green-500/20"
+                      : ""
+                  }
 
-                    px-5
-                    py-4
-
-                    text-left
-                    text-lg
-
-                    transition-all
-
-                    ${
-                      selected === option
-                        ? "border-blue-500 bg-blue-500/20"
-                        : "border-gray-800 bg-gray-900"
-                    }
-
-                    ${
-                      isCorrect
-                        ? "border-green-500 bg-green-500/20"
-                        : ""
-                    }
-
-                    ${
-                      isWrong
-                        ? "border-red-500 bg-red-500/20"
-                        : ""
-                    }
-                  `}
-                >
-
-                  {option}
-
-                </button>
-
-              );
-            }
-          )}
-
+                  ${
+                    isWrong
+                      ? "border-red-500 bg-red-500/20"
+                      : ""
+                  }
+                `}
+              >
+                {option.text}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Buttons */}
-        <div
-          className="
-            mt-10
-            flex
-            justify-end
-          "
-        >
+        {/* Footer */}
 
-          {!submitted ? (
-
+        <div className="mt-10 flex justify-end">
+          {!state.submitted ? (
             <button
-              onClick={handleSubmit}
-
+              onClick={actions.submit}
+              disabled={!state.selected}
               className="
                 rounded-xl
                 bg-green-600
@@ -408,16 +285,15 @@ console.log(
                 py-3
                 font-semibold
                 text-white
+                disabled:cursor-not-allowed
+                disabled:opacity-50
               "
             >
               Submit Answer
             </button>
-
           ) : (
-
             <button
-              onClick={handleNext}
-
+              onClick={actions.next}
               className="
                 rounded-xl
                 bg-blue-600
@@ -427,15 +303,14 @@ console.log(
                 text-white
               "
             >
-              Next Question
+              {state.current ===
+              questions.length - 1
+                ? "Finish Quiz"
+                : "Next Question"}
             </button>
-
           )}
-
         </div>
-
       </div>
-
     </div>
   );
 }

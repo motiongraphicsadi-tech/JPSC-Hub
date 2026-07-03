@@ -1,78 +1,151 @@
-const quiz = [
-    {
-      question:
-        "प्राचीन भारत की प्रमुख नदी घाटी सभ्यता किस नदी तंत्र के किनारे विकसित हुई? / The Indus Valley Civilization developed along which river system?",
-  
-      options: [
-        "गंगा नदी तंत्र (Ganga River System)",
-        "सिंधु नदी तंत्र (Indus River System)",
-        "गोदावरी नदी तंत्र (Godavari River System)",
-        "नर्मदा नदी तंत्र (Narmada River System)",
-      ],
-  
-      answer:
-        "सिंधु नदी तंत्र (Indus River System)",
-    },
-  
-    {
-      question:
-        "प्राचीन भारत को मध्य एशिया से जोड़ने वाले प्रमुख दर्रे कौन-से थे? / Which passes connected Ancient India with Central Asia?",
-  
-      options: [
-        "नाथू ला और जेलेप ला (Nathu La and Jelep La)",
-        "रोहतांग और जोजिला (Rohtang and Zojila)",
-        "खैबर और बोलन दर्रे (Khyber and Bolan Passes)",
-        "पालघाट और थाल घाट (Palghat and Thal Ghat)",
-      ],
-  
-      answer:
-        "खैबर और बोलन दर्रे (Khyber and Bolan Passes)",
-    },
-  
-    {
-      question:
-        "दक्कन के पठार में उपलब्ध किस खनिज ने कृषि विस्तार और राज्य निर्माण को बढ़ावा दिया? / Which mineral resource of the Deccan Plateau promoted agricultural expansion and state formation?",
-  
-      options: [
-        "ताँबा (Copper)",
-        "सोना (Gold)",
-        "लौह अयस्क (Iron Ore)",
-        "चाँदी (Silver)",
-      ],
-  
-      answer:
-        "लौह अयस्क (Iron Ore)",
-    },
-  
-    {
-      question:
-        "निम्नलिखित में से कौन-सा प्राचीन भारत का एक महत्वपूर्ण बंदरगाह था? / Which of the following was an important ancient port of India?",
-  
-      options: [
-        "पाटलिपुत्र (Pataliputra)",
-        "उज्जैन (Ujjain)",
-        "लोथल (Lothal)",
-        "श्रावस्ती (Shravasti)",
-      ],
-  
-      answer:
-        "लोथल (Lothal)",
-    },
-  
-    {
-      question:
-        "प्राचीन भारत में मौर्य और गुप्त जैसे विशाल साम्राज्यों के उदय के लिए कौन-सा क्षेत्र सर्वाधिक अनुकूल था? / Which region was most suitable for the rise of large empires like the Mauryas and Guptas?",
-  
-      options: [
-        "थार मरुस्थल (Thar Desert)",
-        "दक्कन का पठार (Deccan Plateau)",
-        "सिंधु-गंगा का मैदान (Indo-Gangetic Plains)",
-        "पश्चिमी घाट (Western Ghats)",
-      ],
-  
-      answer:
-        "सिंधु-गंगा का मैदान (Indo-Gangetic Plains)",
-    },
-  ];
+import { QuizQuestion } from "@/types/quiz";
 
-  export default quiz;
+const quiz: QuizQuestion[] = [
+  {
+    id: "prehistoric-india-001",
+
+    type: "pyq",
+
+    exam: {
+      commission: "UP Lower Subordinate",
+      stage: "Prelims",
+      year: 2015,
+    },
+
+    subject: "History of India",
+
+    topic: "Prehistoric India",
+
+    difficulty: "Easy",
+
+    question:
+      "भारत में प्रथम पुरापाषाण उपकरण की खोज करने वाले रॉबर्ट ब्रूस फूट क्या थे? / Robert Bruce Foote, who discovered the first Palaeolithic tool in India, was a/an—",
+
+    options: [
+      { id: "A", text: "भूवैज्ञानिक (Geologist)" },
+      { id: "B", text: "पुरातत्त्वविद् (Archaeologist)" },
+      { id: "C", text: "पुरावनस्पतिविज्ञानी (Paleobotanist)" },
+      { id: "D", text: "इतिहासकार (Historian)" },
+    ],
+
+    correctOptionId: "A",
+
+    explanation:
+      "रॉबर्ट ब्रूस फूट एक ब्रिटिश भूवैज्ञानिक तथा पुरातत्त्वविद् थे। उन्हें भारतीय प्रागैतिहासिक अध्ययन का जनक माना जाता है। प्रश्न में एकल उत्तर अपेक्षित है, इसलिए आधिकारिक उत्तर 'A' रखा गया है, हालांकि ऐतिहासिक रूप से वे Archaeologist भी थे.",
+
+    tags: [
+      "prehistoric-india",
+      "robert-bruce-foote",
+      "palaeolithic",
+      "archaeology",
+      "stone-age",
+      "pyq",
+      "upsc-history",
+    ],
+  },
+
+  {
+    id: "prehistoric-india-002",
+
+    type: "pyq",
+
+    exam: {
+      commission: "UPPCS",
+      stage: "Prelims",
+      year: 2010,
+    },
+
+    subject: "History of India",
+
+    topic: "Prehistoric India",
+
+    difficulty: "Easy",
+
+    question:
+      "कोपेनहेगन संग्रहालय के संग्रह के आधार पर विकसित पाषाण, कांस्य एवं लौह युगों के त्रियुग सिद्धांत (Three-Age System) का प्रतिपादन किसने किया? / The Three-Age System, dividing prehistory into Stone, Bronze, and Iron Ages based on the collection of the Copenhagen Museum, was propounded by—",
+
+    options: [
+      { id: "A", text: "थॉमसेन (Thomsen)" },
+      { id: "B", text: "लुबॉक (Lubbock)" },
+      { id: "C", text: "टायलर (Tylor)" },
+      { id: "D", text: "चाइल्ड (Childe)" },
+    ],
+
+    correctOptionId: "A",
+
+    explanation:
+      "त्रियुग सिद्धांत (Three-Age System) का प्रतिपादन डेनमार्क के पुरातत्त्वविद् क्रिश्चियन युर्गेनसेन थॉमसेन (Christian Jürgensen Thomsen) ने किया। उन्होंने कोपेनहेगन संग्रहालय की पुरावस्तुओं को क्रमशः पाषाण, कांस्य और लौह युगों में वर्गीकृत किया, जो बाद में प्रागैतिहासिक काल के अध्ययन का मानक आधार बना।",
+
+    tags: [
+      "prehistoric-india",
+      "three-age-system",
+      "thomsen",
+      "stone-age",
+      "bronze-age",
+      "iron-age",
+      "archaeology",
+      "pyq",
+      "uppcs",
+    ],
+  },
+
+  {
+    id: "prehistoric-india-003",
+
+    type: "pyq",
+
+    exam: {
+      commission: "UPPCS",
+      stage: "Mains",
+      year: 2006,
+    },
+
+    subject: "History of India",
+
+    topic: "Mesolithic Age",
+
+    difficulty: "Easy",
+
+    question:
+      "उत्खनन साक्ष्यों के अनुसार पशुओं का पालतूकरण किस काल में प्रारम्भ हुआ? / According to the excavated evidence, the domestication of animals began in—",
+
+    options: [
+      {
+        id: "A",
+        text: "निम्न पुरापाषाण काल (Lower Palaeolithic Period)",
+      },
+      {
+        id: "B",
+        text: "मध्य पुरापाषाण काल (Middle Palaeolithic Period)",
+      },
+      {
+        id: "C",
+        text: "उच्च पुरापाषाण काल (Upper Palaeolithic Period)",
+      },
+      {
+        id: "D",
+        text: "मध्यपाषाण काल (Mesolithic Period)",
+      },
+    ],
+
+    correctOptionId: "D",
+
+    explanation:
+      "पुरातात्त्विक साक्ष्यों के अनुसार भारत में पशुओं के पालतूकरण का प्रारम्भ मध्यपाषाण (Mesolithic) काल में हुआ। इसके प्रारम्भिक प्रमाण मध्य प्रदेश के आदमगढ़ (Adamgarh) तथा राजस्थान के बागोर (Bagor) से प्राप्त हुए हैं। कुत्ता सबसे प्रारम्भिक पालतू पशुओं में से एक माना जाता है।",
+
+    tags: [
+      "mesolithic-age",
+      "prehistoric-india",
+      "animal-domestication",
+      "adamgarh",
+      "bagor",
+      "stone-age",
+      "archaeology",
+      "pyq",
+      "uppcs",
+    ],
+  },
+
+];
+
+export default quiz;

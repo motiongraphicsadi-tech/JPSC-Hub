@@ -1,29 +1,57 @@
 import { QuizQuestion } from "@/types/quiz";
 
-export interface EvaluationResult {
-
+type EvaluationResult = {
   correct: boolean;
-
-  correctOptionId: string;
-
-}
+};
 
 export function evaluateQuestion(
-
   question: QuizQuestion,
-
-  selectedOptionId: string | null
-
+  selected: string[]
 ): EvaluationResult {
+
+  /*
+   -------------------------
+   Single Correct
+   -------------------------
+  */
+
+  if (question.answerType === "single") {
+
+    return {
+
+      correct:
+        selected.length === 1 &&
+        selected[0] === question.correctOptionId,
+
+    };
+
+  }
+
+  /*
+   -------------------------
+   Multiple Correct
+   -------------------------
+  */
+
+  const correctAnswers =
+    [...(question.correctOptionIds ?? [])]
+      .sort();
+
+  const userAnswers =
+    [...selected]
+      .sort();
+
+  const correct =
+    correctAnswers.length ===
+      userAnswers.length &&
+    correctAnswers.every(
+      (optionId, index) =>
+        optionId === userAnswers[index]
+    );
 
   return {
 
-    correct:
-      selectedOptionId ===
-      question.correctOptionId,
-
-    correctOptionId:
-      question.correctOptionId,
+    correct,
 
   };
 

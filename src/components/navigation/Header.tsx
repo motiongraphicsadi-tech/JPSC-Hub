@@ -35,11 +35,11 @@ const categories = [
   // },
 
   {
-    name: "Mains",
-    href: "/",
-    match: "/mains",
+    name: "Preliminary",
+    href: "/preliminary/paper-2/jharkhand-basics/state-symbols",
+    match: "/preliminary",
   },
-
+ 
   {
     name: "Tests",
     href: "/",

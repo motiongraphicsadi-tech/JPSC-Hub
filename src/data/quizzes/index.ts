@@ -15,7 +15,9 @@ import parhaPanchayatSystem from "./prelims/paper-2-jharkhand-specific/history-o
 import manjhiParganaSystem from "./prelims/paper-2-jharkhand-specific/history-of-jharkhand/manjhi-pargana-system";
 
 // mains indian history
-import stoneAge from "./mains/indian-history/ancient-india/stone-age";
+import stoneAge from "./preliminary/paper-1/history-of-india/ancient-india/stone-age";
+import vedicAge from "./preliminary/paper-1/history-of-india/ancient-india/vedic-age";
+
 
 // preliminary state symbols
 import stateSymbols from "./preliminary/paper-2/jharkhand-basics/state-symbols";
@@ -42,6 +44,7 @@ export const quizzes = {
 
 // mains indian history
 "stone-age": stoneAge,
+"vedic-age": vedicAge,
 
 // preliminary state symbols
 "state-symbols": stateSymbols,

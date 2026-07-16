@@ -11,6 +11,7 @@ export default function Sidebar({
 
   const tree =
     getContentTree();
+    
 
   /*
     Example:

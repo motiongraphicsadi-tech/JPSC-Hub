@@ -36,7 +36,7 @@ const categories = [
 
   {
     name: "Preliminary",
-    href: "/preliminary/paper-2/jharkhand-basics/state-symbols",
+    href: "/preliminary/paper-1/history-of-india/ancient-india/stone-age",
     match: "/preliminary",
   },
  
